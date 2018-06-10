@@ -53,7 +53,7 @@ def echo(bot, update):
 			pnr_info=train_booking+'\n'+train_status+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
 			bot.send_message(chat_id=update.message.chat_id,text=pnr_info)
 			bot.send_message(chat_id=update.message.chat_id,text="Enter your PNR Number")	
-updater=Updater(token='452137950:AAERj2f0RXcyWbbxde3Eg7vSEPYeo6wH5uk')
+updater=Updater(token='<token>')
 dispatcher=updater.dispatcher
 logging.basicConfig(format='%(asctime)s-%(name)s-%(levelname)s-%(message)s',level=logging.INFO)		
 start_handler = CommandHandler('start', start)
