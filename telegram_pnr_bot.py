@@ -1,7 +1,6 @@
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram.ext import CommandHandler
-import logging
 import requests
 import tables
 from bs4 import BeautifulSoup
@@ -10,20 +9,20 @@ def start(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, text=msg)
 def echo(bot, update):
 	pnr=update.message.text
-	#print("1\n")
+	print("1\n")
 	url="https://www.railyatri.in/pnr-status/"+pnr
 	if len(pnr)!=10:
 		bot.send_message(chat_id=update.message.chat_id,text="Retry with a valid PNR Number")
 	else:	
-		#print("2\n")
+		print("2\n")
 		r=requests.get(url)
 		soup = BeautifulSoup(r.text, 'html.parser')
 		table=soup.find(class_="pnr-search-result-info")
 		if not table:
-			#print("4\n")
+			print("4\n")
 			bot.send_message(chat_id=update.message.chat_id,text="Retry with a valid PNR Number")
 		else:
-			#print("3\n")
+			print("3\n")
 			train_booking='Booking Status:'
 			train_name='Train Name:'
 			train_from='From:'
@@ -46,7 +45,7 @@ def echo(bot, update):
 					train_class=train_class+name
 				t=t+1
 			t=1	
-			#print("5\n")
+			print("5\n")
 			table=soup.find(id="status")	
 			for row in table.find_all(class_="col-xs-4"):
 				if t==1 or t==2:	
@@ -57,15 +56,14 @@ def echo(bot, update):
 					train_booking=train_booking.replace('\n', ' ').replace('\r', '')
 				train_booking.rstrip
 				t=t+1
-			#print("6\n")
+			print("6\n")
 			pnr_info=train_booking+'\n'+train_status+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
-			#print("7\n")
+			print("7\n")
 			bot.send_message(chat_id=update.message.chat_id,text=pnr_info)
-			#print("8\n")
+			print("8\n")
 			bot.send_message(chat_id=update.message.chat_id,text="Enter your PNR Number")	
 updater=Updater(token='452137950:AAERj2f0RXcyWbbxde3Eg7vSEPYeo6wH5uk')
 dispatcher=updater.dispatcher
-logging.basicConfig(format='%(asctime)s-%(name)s-%(levelname)s-%(message)s',level=logging.INFO)		
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 updater.start_polling()
