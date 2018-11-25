@@ -3,5 +3,3 @@ python-telegram-bot
 tables
 requests
 logging
-html5lib
-lxml
