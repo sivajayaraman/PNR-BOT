@@ -2,4 +2,3 @@ bs4
 python-telegram-bot
 tables
 requests
-logging
