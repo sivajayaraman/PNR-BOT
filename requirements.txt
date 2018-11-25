@@ -3,3 +3,4 @@ python-telegram-bot
 tables
 requests
 logging
+HTMLParser
