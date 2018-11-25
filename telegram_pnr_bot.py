@@ -1,11 +1,9 @@
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram.ext import CommandHandler
-import logging
 import requests
 import tables
 from bs4 import BeautifulSoup
-import csv
 def start(bot, update):
 	msg='This Telegram Bot is for finding PNR Status.'+'\n'+'Enter your 10 Digit PNR Number.'
 	bot.send_message(chat_id=update.message.chat_id, text=msg)
@@ -53,9 +51,8 @@ def echo(bot, update):
 			pnr_info=train_booking+'\n'+train_status+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
 			bot.send_message(chat_id=update.message.chat_id,text=pnr_info)
 			bot.send_message(chat_id=update.message.chat_id,text="Enter your PNR Number")	
-updater=Updater(token='<token>')
-dispatcher=updater.dispatcher
-logging.basicConfig(format='%(asctime)s-%(name)s-%(levelname)s-%(message)s',level=logging.INFO)		
+updater=Updater(token='452137950:AAERj2f0RXcyWbbxde3Eg7vSEPYeo6wH5uk')
+dispatcher=updater.dispatcher	
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 updater.start_polling()
