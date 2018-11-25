@@ -17,7 +17,7 @@ def echo(bot, update):
 	else:	
 		print("2\n")
 		r=requests.get(url)
-		soup = BeautifulSoup(r.content, 'html5lib')
+		soup = BeautifulSoup(r.text, 'html.parser')
 		table=soup.find('div', attrs = {'class':'pnr-search-result-info'})
 		if not table:
 			print("4\n")
