@@ -1,1 +1,1 @@
-web: python telegram_pnr_bot.py
+worker: python telegram_pnr_bot.py
