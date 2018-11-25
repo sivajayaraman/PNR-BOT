@@ -2,6 +2,8 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram.ext import CommandHandler
 import logging
+import html5lib
+import lxml
 import requests
 import tables
 from bs4 import BeautifulSoup
@@ -17,7 +19,7 @@ def echo(bot, update):
 	else:	
 		print("2\n")
 		r=requests.get(url)
-		soup = BeautifulSoup(r.text, 'html.parser')
+		soup = BeautifulSoup(r.content, 'html5lib')
 		table=soup.find('div', attrs = {'class':'pnr-search-result-info'})
 		if not table:
 			print("4\n")
