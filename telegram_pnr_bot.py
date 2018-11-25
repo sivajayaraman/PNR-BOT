@@ -2,6 +2,7 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram.ext import CommandHandler
 import requests
+import os
 import tables
 from bs4 import BeautifulSoup
 def start(bot, update):
@@ -54,7 +55,8 @@ def echo(bot, update):
 			pnr_info=train_booking+'\n'+train_status+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
 			bot.send_message(chat_id=update.message.chat_id,text=pnr_info)
 			bot.send_message(chat_id=update.message.chat_id,text="Enter your PNR Number")	
-updater=Updater(token='452137950:AAERj2f0RXcyWbbxde3Eg7vSEPYeo6wH5uk')
+tok=os.environ['apiToken']			
+updater=Updater(tok)
 dispatcher=updater.dispatcher
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
