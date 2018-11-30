@@ -51,7 +51,7 @@ def echo(bot, update):
 					train_booking=train_booking.replace('\n', ' ').replace('\r', '')
 				train_booking.rstrip
 				t=t+1
-			pnr_info=train_booking+'\n'+train_status+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
+			pnr_info=train_booking+'\n'+train_name+'\n'+train_from+'\n'+train_to+'\n'+train_date+'\n'+train_class
 			bot.send_message(chat_id=update.message.chat_id,text=pnr_info)
 			bot.send_message(chat_id=update.message.chat_id,text="Enter your PNR Number")	
 tok=os.environ['apiToken']			
