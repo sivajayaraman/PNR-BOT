@@ -24,9 +24,8 @@ def echo(bot, update):
 			train_name='Train Name:'
 			train_from='From:'
 			train_to='To:'
-			train_date='Journey Date:'
-			train_class='Class:'
-			train_status='Current Status:'
+			train_date='Journey Duration:'
+			train_class='Date:'
 			t=1
 			for row in table.find_all(class_="pnr-bold-txt"):
 				name=row.text
@@ -36,9 +35,9 @@ def echo(bot, update):
 					train_from=train_from+name
 				elif t==3:
 					train_to=train_to+name
-				elif t==4:
+				elif t==4 or t==5:
 					train_date=train_date+name
-				elif t==5:
+				elif t==6:
 					train_class=train_class+name
 				t=t+1
 			t=1	
